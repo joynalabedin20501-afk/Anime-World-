@@ -1,33 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Movie Player</title>
-  <style>
-    body { background:#111; margin:0; padding:0; color:#fff; text-align:center; }
-    iframe { width:100%; height:90vh; border:0; }
-  </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Player</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        a.play-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 25px;
+            font-size: 20px;
+            background: #ff0057;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 
-<h2 id="movie-title"></h2>
-<div id="player"></div>
+<h1 id="movie-title">Loading...</h1>
+<a id="play-btn" class="play-btn" target="_blank">Play on MEGA</a>
 
 <script>
-const id = new URLSearchParams(location.search).get("id");
+    fetch("data/movies.json")
+        .then(res => res.json())
+        .then(data => {
+            const params = new URLSearchParams(window.location.search);
+            let id = params.get("id");
 
-fetch("movies.json")
-  .then(res => res.json())
-  .then(data => {
-    const movie = data.find(x => x.id == id);
+            let movie = data.find(m => m.id == id);
 
-    document.getElementById("movie-title").innerText = movie.title;
+            if (!movie) {
+                document.getElementById("movie-title").innerText = "Movie Not Found";
+                return;
+            }
 
-    const embed =
-      `https://mega-player.netlify.app/#${movie.video}`;
-
-    document.getElementById("player").innerHTML =
-      `<iframe src="${embed}" allowfullscreen></iframe>`;
-  });
+            document.getElementById("movie-title").innerText = movie.title;
+            document.getElementById("play-btn").href = movie.videoUrl;
+        });
 </script>
 
 </body>
