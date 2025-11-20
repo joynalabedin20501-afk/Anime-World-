@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Darling in the FranXX Movie",
+    "image": "https://example.com/movie1.jpg",
+    "video": "https://mega.nz/file/XXXXX#KEY"
+  },
+  {
+    "id": 2,
+    "title": "Your Name",
+    "image": "https://example.com/movie2.jpg",
+    "video": "https://mega.nz/file/YYYYY#KEY"
+  }
+]
