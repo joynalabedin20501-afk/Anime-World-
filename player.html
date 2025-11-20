@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Player</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1 id="movie-title">Loading...</h1>
+
+<div id="video-box"></div>
+
+<script>
+function megaEmbed(link) {
+  return "https://fastembed.net/e?url=" + encodeURIComponent(link);
+}
+
+fetch("movies.json")
+  .then(res => res.json())
+  .then(movies => {
+    const id = new URLSearchParams(location.search).get("id");
+    const movie = movies.find(m => m.id == id);
+
+    if (!movie) {
+      document.getElementById("movie-title").innerText = "Movie Not Found";
+      return;
+    }
+
+    document.getElementById("movie-title").innerText = movie.title;
+
+    document.getElementById("video-box").innerHTML = `
+      <iframe 
+        src="${megaEmbed(movie.video)}" 
+        width="100%" 
+        height="240" 
+        allowfullscreen>
+      </iframe>
+    `;
+  });
+</script>
+
+</body>
+</html>
