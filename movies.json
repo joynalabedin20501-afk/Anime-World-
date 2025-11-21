@@ -1,20 +1,8 @@
 [
   {
     "id": "001",
-    "title": "Predator",
-    "image": "https://i.ibb.co/2j7WgDW/predator-poster.jpg",
-    "megaLink": "https://mega.nz/file/fMEGVZCS#q3_TXNtAN8rH9bNKj711gMTF1rGgU5EPBwmyRz2XQj4"
-  },
-  {
-    "id": "002",
-    "title": "Avatar",
-    "image": "https://i.ibb.co/qChM3Ht/avatar.jpg",
-    "megaLink": "https://mega.nz/file/7FEgESQJ#5sDi0mYkJAa39SJn3HhEvGwgv_ZNe77b7pkVkTFrTOY"
-  },
-  {
-    "id": "003",
-    "title": "Spider-Man No Way Home",
-    "image": "https://i.ibb.co/18tKc0V/spiderman.jpg",
-    "megaLink": "https://mega.nz/file/xxxxx#xxxxxxxxxxxxxxxx"
+    "title": "Furiosa: A Mad Max Saga",
+    "thumbnail": "https://i.ibb.co/tcbNL2g/furiosa.jpg",
+    "mega": "https://mega.nz/file/7FEgESQJ#5sDi0mYkJAa39SJn3HhEvGwgv_ZNe77b7pkVkTFrTOY"
   }
 ]
