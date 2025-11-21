@@ -1,8 +1,20 @@
 [
   {
-    "id": 1,
-    "title": "My Movie Example",
-    "thumbnail": "https://i.imgur.com/OP3iKkY.jpeg",
-    "megaUrl": "https://mega.nz/file/XR0gzQwI#q3_TXNtAN8rH9bNKj711gMTF1rGgU5EPBwmyRz2XQj4"
+    "id": "001",
+    "title": "Predator",
+    "image": "https://i.ibb.co/2j7WgDW/predator-poster.jpg",
+    "megaLink": "https://mega.nz/file/fMEGVZCS#q3_TXNtAN8rH9bNKj711gMTF1rGgU5EPBwmyRz2XQj4"
+  },
+  {
+    "id": "002",
+    "title": "Avatar",
+    "image": "https://i.ibb.co/qChM3Ht/avatar.jpg",
+    "megaLink": "https://mega.nz/file/xxxxx#xxxxxxxxxxxxxxxx"
+  },
+  {
+    "id": "003",
+    "title": "Spider-Man No Way Home",
+    "image": "https://i.ibb.co/18tKc0V/spiderman.jpg",
+    "megaLink": "https://mega.nz/file/xxxxx#xxxxxxxxxxxxxxxx"
   }
 ]
