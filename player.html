@@ -1,51 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Video Player</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="https://cdn.jsdelivr.net/npm/megajs@1.1.3/dist/mega.min.js"></script>
-
-<style>
-body {
-  margin: 0;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-video {
-  width: 100%;
-  height: 100%;
-  outline: none;
-}
-h1 {
-  color:white;
-  text-align:center;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Watch Movie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial; text-align: center; padding: 40px; background: #111; color: white; }
+        .btn {
+            padding: 12px 25px;
+            background: #ff0033;
+            color: white;
+            font-size: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
-<video id="player" controls autoplay></video>
+<h1 id="movieTitle">Loading...</h1>
+<a id="megaButton" class="btn" target="_blank">Open in MEGA</a>
 
 <script>
 const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+const movieId = params.get("id");
 
 fetch("movies.json")
   .then(res => res.json())
   .then(movies => {
-    const movie = movies.find(m => m.id === id);
-    const file = MegaLink.from(movie.mega);
+    const movie = movies.find(m => m.id === movieId);
 
-    file.loadAttributes().then(() => {
-      file.download({ returnReadableStream: true }).then(stream => {
-        document.getElementById("player").src = URL.createObjectURL(stream);
-      });
-    });
-});
+    document.getElementById("movieTitle").innerText = movie.title;
+    document.getElementById("megaButton").href = movie.mega;
+  });
 </script>
 
 </body>
