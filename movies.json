@@ -1,14 +1,8 @@
 [
   {
     "id": 1,
-    "title": "Predator-Badlands",
-    "image": "https://i.ibb.co/JQ4mbVQ/predator.jpg",
-    "video": "https://mega.nz/file/XR0gzQwI#q3_TXNtAN8rH9bNKj711gMTF1rGgU5EPBwmyRz2XQj4"
-  },
-  {
-    "id": 2,
-    "title": "Your Name",
-    "image": "https://i.ibb.co/QnV7p1K/yourname.jpg",
-    "video": "MEGA_LINK_HERE"
+    "title": "My Movie Example",
+    "thumbnail": "https://i.imgur.com/OP3iKkY.jpeg",
+    "megaUrl": "https://mega.nz/file/XR0gzQwI#q3_TXNtAN8rH9bNKj711gMTF1rGgU5EPBwmyRz2XQj4"
   }
 ]
