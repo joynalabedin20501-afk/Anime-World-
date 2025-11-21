@@ -1,42 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Player</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <title>Watch Movie</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: #ff3366;
+        }
+
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
+
+        .loading {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #aaa;
+        }
+    </style>
 </head>
 
 <body>
 
-<h1 class="title" id="movie-title">Loading...</h1>
+    <h1 id="title">Loading...</h1>
 
-<div class="video-box">
-    <iframe id="video-frame" width="100%" height="260" frameborder="0" allowfullscreen></iframe>
-</div>
+    <iframe id="player" allowfullscreen></iframe>
 
-<script>
-const params = new URLSearchParams(window.location.search);
-const movieId = params.get("id");
+    <p class="loading">If video doesn’t load, your MEGA link is private or deleted.</p>
 
-fetch("movies.json")
-  .then(res => res.json())
-  .then(data => {
-    const movie = data.find(m => m.id == movieId);
+    <script>
+        // Read movie data from URL
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get("title");
+        const megaUrl = params.get("mega");
 
-    if (!movie) {
-        document.getElementById("movie-title").innerText = "Movie Not Found";
-        return;
-    }
+        document.getElementById("title").textContent = title;
 
-    document.getElementById("movie-title").innerText = movie.title;
+        // Extract File ID + Key
+        function convertMegaToEmbed(url) {
+            try {
+                const part = url.split("/file/")[1];
+                const fileId = part.split("#")[0];
+                const key = part.split("#")[1];
 
-    // Working MEGA embed (2025)
-    const embed = `https://megaiframe.net/embed?url=${encodeURIComponent(movie.megaUrl)}`;
+                return `https://megaembed.net/embed/${fileId}#${key}`;
+            } catch {
+                return null;
+            }
+        }
 
-    document.getElementById("video-frame").src = embed;
-  });
-</script>
+        const embedUrl = convertMegaToEmbed(megaUrl);
+
+        if (embedUrl) {
+            document.getElementById("player").src = embedUrl;
+        } else {
+            document.getElementById("player").remove();
+            document.body.innerHTML += "<p style='color:red;'>Invalid MEGA link!</p>";
+        }
+    </script>
 
 </body>
 </html>
