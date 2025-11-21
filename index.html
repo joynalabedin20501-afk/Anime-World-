@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Movie World</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Movie World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <h1 class="title">🎬 Movie World</h1>
@@ -24,8 +23,8 @@ fetch("movies.json")
       div.className = "movie-card";
       div.innerHTML = `
         <img src="${movie.thumbnail}" class="thumb">
-        <h3>${movie.title}</h3>
-        <a href="player.html?id=${movie.id}" class="watch-btn">Watch Now</a>
+        <h2>${movie.title}</h2>
+        <a href="player.html?id=${movie.id}" class="watch-btn">Watch</a>
       `;
       container.appendChild(div);
     });
