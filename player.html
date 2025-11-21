@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Watch Movie</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { font-family: Arial; text-align: center; padding: 40px; background: #111; color: white; }
-        .btn {
-            padding: 12px 25px;
-            background: #ff0033;
-            color: white;
-            font-size: 20px;
-            border-radius: 10px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Watch Movie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { background: #000; color: #fff; text-align: center; padding: 50px; font-family: Arial; }
+    .btn { background: #ff0033; padding: 15px 30px; color: white; border-radius: 10px; font-size: 22px; text-decoration: none; }
+  </style>
 </head>
 <body>
 
 <h1 id="movieTitle">Loading...</h1>
-<a id="megaButton" class="btn" target="_blank">Open in MEGA</a>
+<a id="megaBtn" class="btn" target="_blank">Open in MEGA</a>
 
 <script>
 const params = new URLSearchParams(window.location.search);
@@ -33,7 +24,7 @@ fetch("movies.json")
     const movie = movies.find(m => m.id === movieId);
 
     document.getElementById("movieTitle").innerText = movie.title;
-    document.getElementById("megaButton").href = movie.mega;
+    document.getElementById("megaBtn").href = movie.mega;
   });
 </script>
 
