@@ -20,6 +20,10 @@ video {
   height: 100%;
   outline: none;
 }
+h1 {
+  color:white;
+  text-align:center;
+}
 </style>
 </head>
 <body>
@@ -28,14 +32,19 @@ video {
 
 <script>
 const params = new URLSearchParams(window.location.search);
-const url = params.get("m");
+const id = params.get("id");
 
-const file = MegaLink.from(url);
+fetch("movies.json")
+  .then(res => res.json())
+  .then(movies => {
+    const movie = movies.find(m => m.id === id);
+    const file = MegaLink.from(movie.mega);
 
-file.loadAttributes().then(() => {
-  file.download({ returnReadableStream: true }).then(stream => {
-    document.getElementById("player").src = URL.createObjectURL(stream);
-  });
+    file.loadAttributes().then(() => {
+      file.download({ returnReadableStream: true }).then(stream => {
+        document.getElementById("player").src = URL.createObjectURL(stream);
+      });
+    });
 });
 </script>
 
