@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Anime World – Movies</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Movie World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1 class="title">Anime World – Movies</h1>
+<h1 class="title">🎬 Movie World</h1>
 
-<div id="movie-container" class="grid"></div>
+<div id="movie-list" class="movie-grid"></div>
 
 <script>
 fetch("movies.json")
   .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById("movie-container");
+  .then(movies => {
+    const container = document.getElementById("movie-list");
 
-    data.forEach(movie => {
-      container.innerHTML += `
-        <div class="card">
-          <img src="${movie.image}" class="poster">
-          <h3>${movie.title}</h3>
-          <a href="player.html?id=${movie.id}">
-            <button class="play-btn">Play</button>
-          </a>
-        </div>
+    movies.forEach(movie => {
+      const div = document.createElement("div");
+      div.className = "movie-card";
+      div.innerHTML = `
+        <img src="${movie.thumbnail}" class="thumb">
+        <h3>${movie.title}</h3>
+        <a href="player.html?id=${movie.id}" class="watch-btn">Watch Now</a>
       `;
+      container.appendChild(div);
     });
   });
 </script>
