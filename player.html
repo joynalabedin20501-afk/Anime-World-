@@ -1,55 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Watch Movie</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { background:#000; color:#fff; font-family:Arial; text-align:center; padding:20px; }
-        .title { font-size:24px; margin-bottom:20px; }
-        .btn {
-            display:inline-block;
-            padding:15px 25px;
-            background:#ff004f;
-            color:#fff;
-            border-radius:12px;
-            text-decoration:none;
-            font-size:20px;
-            margin-top:20px;
-        }
-    </style>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch Movie</title>
+<link rel="stylesheet" href="style.css">
 
+<style>
+body {
+  background: #0b0b0b;
+  color: white;
+  font-family: Poppins, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+.poster {
+  width: 90%;
+  max-width: 350px;
+  border-radius: 14px;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.title {
+  font-size: 28px;
+  margin-top: 18px;
+  font-weight: 600;
+}
+
+.desc {
+  margin: 10px auto;
+  width: 90%;
+  max-width: 600px;
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+.btn {
+  background: #ff004f;
+  padding: 15px 26px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  display: inline-block;
+  margin-top: 18px;
+  font-weight: bold;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 16px;
+  color: #aaa;
+  text-decoration: none;
+}
+</style>
+
+</head>
 <body>
 
-<h1 class="title" id="movie-title">Loading...</h1>
+<div class="container">
+    <img id="poster" class="poster">
+    <h1 id="movieTitle" class="title"></h1>
+    <p id="movieDesc" class="desc"></p>
 
-<p>If video cannot open here, click button below to open in MEGA App</p>
-
-<a id="megaBtn" class="btn">Open in MEGA App</a>
+    <a id="megaBtn" class="btn" target="_blank">Open in MEGA</a><br>
+    <a href="index.html" class="back-btn">⬅ Back to Movies</a>
+</div>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const movieId = params.get("id");
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
 
-// Load movie details
-fetch("movies.json")
-  .then(res => res.json())
-  .then(movies => {
-    const movie = movies.find(m => m.id == movieId);
+  fetch("movies.json")
+    .then(res => res.json())
+    .then(data => {
+      const movie = data.find(m => m.id == id);
 
-    if (!movie) {
-      document.getElementById("movie-title").innerText = "Movie Not Found";
-      return;
-    }
-
-    document.getElementById("movie-title").innerText = movie.title;
-
-    // When user clicks button → open MEGA app
-    document.getElementById("megaBtn").onclick = () => {
-      window.location.href = movie.mega.replace("https://mega.nz", "mega://");
-    };
-  });
+      document.getElementById("poster").src = movie.thumbnail;
+      document.getElementById("movieTitle").innerText = movie.title;
+      document.getElementById("movieDesc").innerText = movie.description;
+      document.getElementById("megaBtn").href = movie.mega;
+    });
 </script>
 
 </body>
